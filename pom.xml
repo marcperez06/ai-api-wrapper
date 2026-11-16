@@ -32,13 +32,11 @@
 		</developer>
 	</developers>
 
-	<!--
 	<scm>
 	<connection>scm:git:git://github.com/marcperez06/ai-api-wrapper.git</connection>
-	<developerConnection>scm:git:ssh://github.com:marcperez06/ai-api-wrapper.git</developerConnection>
+	<developerConnection>scm:git:ssh://github.com/marcperez06/ai-api-wrapper.git</developerConnection>
 		<url>https://github.com/marcperez06/ai-api-wrapper</url>
 	</scm>
-	-->
 
 
 	<properties>
