@@ -1,0 +1,9 @@
+{
+  "provider": "ollama",
+  "apiKey": "",
+  "endpoint": "http://localhost:11434",
+  "model": "llama3",
+  "temperature": 0.7,
+  "timeout": 30,
+  "maxContent": 1024
+}

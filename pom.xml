@@ -1,0 +1,275 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.github.marcperez06</groupId>
+	<artifactId>ai-api-wrapper</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>ai-api-wrapper</name>
+	<description>Library to interact with some AI clients from External URL or
+		Local Machine</description>
+	<url>http://maven.apache.org</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>marcperez06</id>
+			<name>Marc Perez Rodriguez</name>
+			<url>https://github.com/marcperez06</url>
+			<properties>
+				<github>https://github.com/marcperez06</github>
+				<gitlab>https://gitlab.com/marcperez06</gitlab>
+			</properties>
+		</developer>
+	</developers>
+
+	<!--
+	<scm>
+	<connection>scm:git:git://github.com/marcperez06/ai-api-wrapper.git</connection>
+	<developerConnection>scm:git:ssh://github.com:marcperez06/ai-api-wrapper.git</developerConnection>
+		<url>https://github.com/marcperez06/ai-api-wrapper</url>
+	</scm>
+	-->
+
+
+	<properties>
+		<project.package>${jdk.version}.${jdk.version}</project.package>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.source.plugin.version>3.1.0</maven.source.plugin.version>
+		<maven.javadoc.plugin.version>3.1.0</maven.javadoc.plugin.version>
+		<maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
+		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+		<maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
+		<gpg.version>1.5</gpg.version>
+		<sonatype.version>1.6.13</sonatype.version>
+		<jdk.version>1.8</jdk.version>
+		<junit.version>4.13.2</junit.version>
+		<utilities.version>0.2.0</utilities.version>
+		<jackson.version>2.13.4</jackson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/io.github.marcperez06/java-utilities -->
+		<dependency>
+			<groupId>io.github.marcperez06</groupId>
+			<artifactId>java-utilities</artifactId>
+			<version>${utilities.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<!-- Compiler plug-in -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven.deploy.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>${gpg.version}</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>${sonatype.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>sonatype-nexus</serverId>
+					<nexusUrl>https://ossrh-staging-api.central.sonatype.com</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+						<configuration></configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<source>${jdk.version}</source>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${maven.shade.plugin.version}</version>
+				<executions>
+					<!-- CREATE JAR TO UPDATE TO MAVEN -->
+					<execution>
+						<id>maven-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}-${project.version}</finalName>
+							<minimizeJar>false</minimizeJar>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>${project.package}.Main</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+
+					<!-- CREATE EXECUTABLE JAR CALLED ai-api-wrapper.jar, for
+					execute on terminal -->
+					<execution>
+						<id>executable-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}</finalName>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<minimizeJar>false</minimizeJar>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>${project.package}.Main</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus</id>
+			<name>Central Portal Snapshots</name>
+			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus</id>
+			<name>Central Portal Releases API</name>
+			<url>https://sonatype.com</url>
+		</repository>
+	</distributionManagement>
+</project>
