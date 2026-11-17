@@ -15,6 +15,8 @@ public class AgentDetails {
 	private List<ToolConfig> tools;
 	private MemoryConfig memory;
 	private GuardrailsConfig guardrails;
+	
+	public AgentDetails() {}
 
 	public String getName() {
 		return this.name;

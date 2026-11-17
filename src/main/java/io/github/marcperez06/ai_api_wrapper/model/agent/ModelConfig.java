@@ -6,6 +6,8 @@ public class ModelConfig {
 	private String name;
 	private Double temperature;
 	private Integer maxTokens;
+	
+	public ModelConfig() {}
 
 	public String getProvider() {
 		return this.provider;

@@ -7,6 +7,8 @@ public class GuardrailsConfig {
 	private Boolean contentFiltering;
 	private List<String> blockTopics;
 	private Integer maxRetryOnError;
+	
+	public GuardrailsConfig() {}
 
 	public Boolean getContentFiltering() {
 		return this.contentFiltering;

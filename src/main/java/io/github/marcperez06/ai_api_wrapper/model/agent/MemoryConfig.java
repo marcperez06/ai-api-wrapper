@@ -4,6 +4,8 @@ public class MemoryConfig {
 
 	private String type;
 	private Integer maxTurns;
+	
+	public MemoryConfig() {}
 
 	public String getType() {
 		return this.type;

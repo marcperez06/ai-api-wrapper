@@ -7,6 +7,8 @@ public class ToolConfig {
 	private String name;
 	private String description;
 	private Map<String, Object> parameters;
+	
+	public ToolConfig() {}
 
 	public String getName() {
 		return this.name;
